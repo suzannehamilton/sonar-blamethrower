@@ -351,7 +351,7 @@ END
     begin
       smtp.send_message message, from, address
     rescue Net::SMTPError => e
-      puts "Error: Failed to send Sonar results email to '#{address}': #{e.inspect}, #{e.backtrace}"
+      puts "Error: Failed to send Sonar results email to '#{address}': #{e.inspect}"
     end
   end
 end
