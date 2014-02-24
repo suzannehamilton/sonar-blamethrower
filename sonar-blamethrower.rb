@@ -348,7 +348,11 @@ Subject: #{subject}
 END
 
   Net::SMTP.start('smtp.zoo.lan') do |smtp|
-    smtp.send_message message, from, address
+    begin
+      smtp.send_message message, from, address
+    rescue Net::SMTPError => e
+      puts "Error: Failed to send Sonar results email to '#{address}': #{e.inspect}, #{e.backtrace}"
+    end
   end
 end
 
